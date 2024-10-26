@@ -22,7 +22,7 @@
 传入高度是可选的，如果不传入，则会自动计算高度。
 
 ``` python
->>> from unicode_utils import SearchPattern, ReplacePattern
+>>> from unifont_utils import SearchPattern, ReplacePattern
 >>> p1 = SearchPattern([0, 1, 0, 1, 0, 1], 2)
 >>> p2 = ReplacePattern([-1, 1, 1, 0, -1, 1], 2, 3)
 ```
@@ -32,7 +32,7 @@
 也可以使用其他方式绘制图片，再使用`init_from_img`方法从图片初始化这两种图案对象。
 
 ``` python
->>> from unicode_utils import SearchPattern, ReplacePattern
+>>> from unifont_utils import SearchPattern, ReplacePattern
 >>> p1 = SearchPattern.init_from_img("path/to/p1.png")
 >>> p2 = ReplacePattern.init_from_img("path/to/p2.png")
 ```
@@ -83,7 +83,7 @@
 ![GlyphReplacer](image/GlyphReplacer_1.svg)
 
 ``` python
->>> from unicode_utils import GlyphReplacer
+>>> from unifont_utils import GlyphReplacer
 >>> GlyphReplacer(glyph, p1, p2).run()
 ```
 
@@ -114,7 +114,7 @@
 传入的两个字形必须有相同的尺寸。
 
 ``` python
->>> from unicode_utils import diff_glyphs
+>>> from unifont_utils import diff_glyphs
 >>> diff = diff_glyphs(glyph1, glyph2)
 ```
 
@@ -132,7 +132,7 @@
 传入的两个字形必须有相同的尺寸。
 
 ``` python
->>> from unicode_utils import print_diff
+>>> from unifont_utils import print_diff
 >>> print_diff(glyph1, glyph2)
 ```
 
