@@ -11,7 +11,7 @@
 直接实例化`GlyphSet`类可以创建一个空白字形集。
 
 ```python
->>> from unicode_utils import GlyphSet
+>>> from unifont_utils import GlyphSet
 >>> glyph_set = GlyphSet()
 ```
 
@@ -53,7 +53,7 @@
 添加的字形必须为`Glyph`对象[^1]，否则会抛出`TypeError`异常。
 
 ```python
->>> from unicode_utils import Glyph, GlyphSet
+>>> from unifont_utils import Glyph, GlyphSet
 >>> glyph_set = GlyphSet()
 >>> glyph = Glyph("5B57")
 >>> glyph_set.add_glyph(glyph)
@@ -80,7 +80,7 @@
 两个`Glyph`对象相加可以得到一个`GlyphSet`对象，其中包含原先的两个字形。
 
 ```python
->>> from unicode_utils import Glyph, GlyphSet
+>>> from unifont_utils import Glyph, GlyphSet
 >>> glyph_1 = Glyph(0x4E00)
 >>> glyph_2 = Glyph(0x4E01)
 >>> glyph_set = glyph_1 + glyph_2
@@ -218,18 +218,18 @@ True
 
 ### 保存为图片
 
-可以使用`save_unicode_page`方法将字形集保存为图片，大小为256×256，最多包含256个字形。
+可以使用`save_unifont_page`方法将字形集保存为图片，大小为256×256，最多包含256个字形。
 
 这里的“Unicode Page”指的是Minecraft Java版使用的位图字体（Bitmap Font），用于在游戏中自定义字体。
 
 ```python
->>> glyph_set.save_unicode_page("path/to/unicode_page.png")
+>>> glyph_set.save_unifont_page("path/to/unifont_page.png")
 ```
 
 可以指定`start`参数来指定保存图片的起始编码位点。传入的值必须为有效的Unicode编码，默认为`4E00`。
 
 ```python
->>> glyph_set.save_unicode_page("path/to/unicode_page.png", start=0x4E01)
+>>> glyph_set.save_unifont_page("path/to/unifont_page.png", start=0x4E01)
 ```
 
 [^1]: 为了保证兼容性，这里也可以传入格式为`(code_point, hex_str)`的元组，但不推荐这样做——除非你在某些特殊情况下无法创建`Glyph`对象。
