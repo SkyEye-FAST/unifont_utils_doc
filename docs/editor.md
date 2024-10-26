@@ -13,7 +13,7 @@
 下面以字符“過”（U+904E）为例：
 
 ``` python
->>> from unicode_utils import Glyph, GlyphEditor
+>>> from unifont_utils import Glyph, GlyphEditor
 >>> glyph = Glyph("904E")
 >>> glyph.load_hex("01F8210811E81128012803FCF20412F4129412F4120412141208280047FE0000")
 >>> GlyphEditor(glyph).run()
