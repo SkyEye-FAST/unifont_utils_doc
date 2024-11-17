@@ -96,10 +96,12 @@
 >>> glyph = Glyph.init_from_img("5B57", "path/to/glyph.png")
 ```
 
-GNU官方的位图配色方案是“**白色为`0`，黑色为`1`**”。如果要使用“**透明为`0`，白色为`1`**”的配色方案（如Minecraft），请将`black_and_white`参数设为`False`。
+### 配色方案
+
+加载图片时会自动检测图片的配色方案，但是不一定准确。如果自动检测的配色方案不正确，可以通过`color_scheme`参数在`load_img`或`init_from_img`方法中指定图片的配色方案。参见[配色方案相关说明](color_scheme.md)。
 
 ``` python
->>> glyph.load_img("path/to/glyph.png", black_and_white=False)
+>>> glyph.load_img("path/to/glyph.png", color_scheme="transparent_and_white")
 ```
 
 ## 获取信息
@@ -150,7 +152,7 @@ CJK UNIFIED IDEOGRAPH-5B57
 
 可以使用`print_glyph`方法在控制台中直接打印字形，以便在不保存图片的情况下快速查看目前存储的字形。
 
-要使用这一功能，你的终端必须支持[ANSI转义序列](https://zh.wikipedia.org/wiki/ANSI%E8%BD%AC%E4%B9%89%E5%BA%8F%E5%88%97)。请注意，**Windows上的Win32控制台不支持ANSI转义序列**，请使用**支持ANSI转义序列的终端**或**适用于Linux的Windows子系统**（WSL），否则可能无法正常显示字形。
+要使用这一功能，你的终端必须支持[ANSI转义序列](https://zh.wikipedia.org/wiki/ANSI%E8%BD%AC%E4%B9%89%E5%BA%8F%E5%88%97)。请注意，**Windows上的Win32控制台不支持ANSI转义序列**，请使用**支持ANSI转义序列的终端**（如Windows Terminal）或**适用于Linux的Windows子系统**（WSL），否则可能无法正常显示字形。
 
 ``` python
 >>> glyph.print_glyph()
@@ -166,12 +168,12 @@ CJK UNIFIED IDEOGRAPH-5B57
 
 ![Sample 2](image/print_glyph_2.png)
 
-如果你是从图片中加载的字形数据，这里的配色方案也会自动继承加载图片时指定的`black_and_white`参数的值。由于终端不可能像图片那样有“透明”的概念，因此“**透明为`0`，白色为`1`**”的配色方案只能处理为黑底白字。
+如果你是从图片中加载的字形数据，这里的配色方案也会自动继承加载图片时指定的`color_scheme`参数的值。由于终端不可能像图片那样有“透明”的概念，如果使用背景为透明的配色方案，背景色会被处理为前景色的反色。
 
-当然，你也可以手动给`print_glyph`方法指定`black_and_white`参数，以覆盖默认值。传入`True`则显示白底黑字，传入`False`则显示黑底白字。
+当然，你也可以手动给`print_glyph`方法指定`color_scheme`参数，以覆盖默认值。
 
 ``` python
->>> glyph.print_glyph(black_and_white=False)
+>>> glyph.print_glyph(color_scheme="transparent_and_white")
 ```
 
 ![Sample 3](image/print_glyph_3.png)
@@ -197,16 +199,16 @@ CJK UNIFIED IDEOGRAPH-5B57
 >>> glyph.save_img("path/to/save.bmp", img_format="BMP")
 ```
 
-如果你是从图片中加载的字形数据，那么`Glyph`对象中会存储当时指定的`black_and_white`参数的值。在保存为图片时，会自动继承这个值来决定以何种形式保存图片——换句话说，配色和加载图片时保持一致。
+如果你是从图片中加载的字形数据，那么`Glyph`对象中会存储当时指定的`color_scheme`参数的值。在保存为图片时，会自动继承这个值来决定以何种形式保存图片——换句话说，配色和加载图片时保持一致。
 
-当然，你也可以手动给`save_img`方法指定`black_and_white`参数，以覆盖默认值。
+当然，你也可以手动给`save_img`方法指定`color_scheme`参数，以覆盖默认值。
 
 ``` python
->>> glyph.save_img("path/to/save.png", black_and_white=False)
+>>> glyph.save_img("path/to/save.png", color_scheme="transparent_and_white")
 ```
 
 !!! warning
 
-    由于`BMP`格式不能保存透明度信息，如果指定的图片格式为`BMP`，图片的透明度信息会被忽略，图片会以白底黑字的形式保存（即`black_and_white`参数会被强制设为`True`）。
+    由于`BMP`格式不能保存透明度信息，如果指定的图片格式为`BMP`，图片的透明度信息会被忽略，背景色会被处理为前景色的反色。
 
 [^1]: 文中提到的部分“属性”实际上是特性（Property），为了方便起见，文中不做区分，仅在必要的时候作出说明。
