@@ -9,6 +9,7 @@ nav:
   - 开始: index.md
   - 安装: install.md
   - 教程:
+      - 配色方案: color_scheme.md
       - 字形: glyph.md
       - 字形集: glyph_set.md
       - 编辑器: editor.md
