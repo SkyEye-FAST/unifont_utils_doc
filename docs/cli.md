@@ -128,7 +128,7 @@ unipie hex view -p ./unifont.hex -c 4E01
 - 主要参数：
   - `-p, --font_path/--path`：输入`.hex`文件路径，必填。
   - `-c, --code_point/--cp`：目标码位，必填。
-  - `--pure/--verbose`：是否静默输出，仅打印结果字符串，默认`--verbose`。
+  - `--pure/--verbose`：是否静默输出（仅打印结果字符串），默认为`--verbose`（即输出加载信息）。
 
 示例：
 
@@ -176,7 +176,7 @@ unipie convert img2hex -p ./glyph.png -a
 下载并解压官方发行的GNU Unifont `.hex`文件。
 
 - 主要参数：
-  - `-v, --version`：Unifont版本（>=7.x），留空则下载最新。
+  - `-v, --version`：Unifont版本（>=7.x），为空则下载最新版本。
   - `-t, --variant`：发行变体，默认为`unifont_all`，可选项：
     - `unifont`
     - `unifont_all`
