@@ -2,7 +2,7 @@
 
 ## 从PyPI安装
 
-Unifont Utils目前仅支持Python 3.9及以上版本。请参见[PyPI上的项目页面](https://pypi.org/project/unifont_utils/)。
+Unifont Utils目前支持Python 3.10及以上版本。请参见[PyPI上的项目页面](https://pypi.org/project/unifont_utils/)。
 
 请使用下面的命令从PyPI安装Unifont Utils：
 
