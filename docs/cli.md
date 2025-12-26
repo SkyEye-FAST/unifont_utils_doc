@@ -195,6 +195,8 @@ unipie convert img2hex -p ./glyph.png -a
 unipie download -v 16.0.04 -t unifont_jp -f
 ```
 
+## 其他
+
 ### info
 
-显示 Unipie 版本信息。
+显示Unipie版本信息。
