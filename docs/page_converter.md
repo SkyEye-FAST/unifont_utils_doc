@@ -13,7 +13,7 @@ save_page_image(
     glyphs,
     page="83",  # 十六进制页号
     output="u83.png",
-    color_scheme="inverted_black_and_white",  # 亦可传 ColorScheme 对象
+    color_scheme="inverted_black_and_white",
 )
 ```
 
