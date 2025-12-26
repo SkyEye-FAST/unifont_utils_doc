@@ -24,7 +24,7 @@
 示例：
 
 ```shell
-unipie edit file -p ./unifont.hex -c 4E00 --overwrite
+unipie edit file -p unifont.hex -c 4E00 --overwrite
 ```
 
 ### `edit str`
@@ -71,7 +71,7 @@ unipie edit empty -c 4E02
 示例：
 
 ```shell
-unipie hex add -p ./unifont.hex -c 4E01 -s 00007FFC01000100010001000100010001000100010001000100010005000200
+unipie hex add -p unifont.hex -c 4E01 -s 00007FFC01000100010001000100010001000100010001000100010005000200
 ```
 
 ### `hex replace`
@@ -88,7 +88,7 @@ unipie hex add -p ./unifont.hex -c 4E01 -s 00007FFC01000100010001000100010001000
 示例：
 
 ```shell
-unipie hex replace -p ./unifont.hex -c 4E01 -s 00007FFC01000100010001000100010001000100010001000100010005000200
+unipie hex replace -p unifont.hex -c 4E01 -s 00007FFC01000100010001000100010001000100010001000100010005000200
 ```
 
 ### `hex delete`
@@ -104,7 +104,7 @@ unipie hex replace -p ./unifont.hex -c 4E01 -s 00007FFC0100010001000100010001000
 示例：
 
 ```shell
-unipie hex delete -p ./unifont.hex -c 4E01 --overwrite
+unipie hex delete -p unifont.hex -c 4E01 --overwrite
 ```
 
 ### `hex view`
@@ -118,7 +118,7 @@ unipie hex delete -p ./unifont.hex -c 4E01 --overwrite
 示例：
 
 ```shell
-unipie hex view -p ./unifont.hex -c 4E01
+unipie hex view -p unifont.hex -c 4E01
 ```
 
 ### `hex query`
@@ -133,40 +133,74 @@ unipie hex view -p ./unifont.hex -c 4E01
 示例：
 
 ```shell
-unipie hex query -p ./unifont.hex -c 4E01 --pure
+unipie hex query -p unifont.hex -c 4E01 --pure
 ```
 
 ## 转换
 
-### `convert hex2img`
+### `convert single hex2img`
 
-将`.hex`字符串导出为图片，支持指定颜色方案与图片格式。
+将单个`.hex`字符串导出为图片。
 
 - 主要参数：
   - `-s, --str/--hex_str/--hex`：源`.hex`字符串，必填。
   - `-o, --output`：输出图片路径，必填。
   - `-f, --img_format/--format`：输出图片格式，默认`PNG`。
-  - `-c, --color_scheme`：颜色方案，默认为`black_and_white`。
+  - `-c, --color_scheme`：配色方案，默认为`black_and_white`。
 
 示例：
 
 ```shell
-unipie convert hex2img -s 00007FFC01000100010001000100010001000100010001000100010005000200 -o ./glyph.png -f PNG -c black_and_white
+unipie convert single hex2img -s 00007FFC01000100010001000100010001000100010001000100010005000200 -o glyph.png -f PNG -c black_and_white
 ```
 
-### `convert img2hex`
+### `convert single img2hex`
 
-从图片生成`.hex`字符串，支持自动检测或手动指定颜色方案。
+从包含单个字形的图片生成`.hex`字符串，支持自动检测或手动指定配色方案。
 
 - 主要参数：
   - `-p, --img_path/--path`：输入图片路径，必填。
-  - `-a, --auto_detect/--auto`：是否自动检测颜色方案，默认不启用。
-  - `-c, --color_scheme`：手动指定颜色方案，为空则自动检测颜色方案。
+  - `-a, --auto_detect/--auto`：是否自动检测配色方案，默认不启用。
+  - `-c, --color_scheme`：手动指定配色方案，为空则自动检测配色方案。
 
 示例：
 
 ```shell
-unipie convert img2hex -p ./glyph.png -a
+unipie convert single img2hex -p glyph.png -a
+```
+
+### `convert page hex2img`
+
+将整页（256个码位）的`.hex`数据导出为图片，适用于批量编辑。支持PNG、BMP、JPEG等格式。
+
+- 主要参数：
+  - `-p, --font_path/--path`：输入`.hex`文件路径，必填。
+  - `-g, --page`：要导出的页号（十六进制，如`00`、`83`），必填。
+  - `-o, --output`：输出图片路径，必填。
+  - `-f, --img_format/--format`：输出图片格式，默认根据文件后缀推断。
+  - `-c, --color_scheme`：配色方案，默认为`black_and_white`。
+
+示例：
+
+```shell
+unipie convert page hex2img -p unifont.hex -g 83 -o u83.png
+```
+
+### `convert page img2hex`
+
+从整页图片生成`.hex`文件，可指定页号和配色方案，支持自动检测或手动指定配色方案。
+
+- 主要参数：
+  - `-p, --img_path/--path`：输入页图片路径，必填。
+  - `-g, --page`：图片对应的页号（十六进制，如`00`、`83`），必填。
+  - `-o, --output`：输出`.hex`路径，必填。
+  - `--auto_detect/--no-auto_detect`：是否自动检测配色方案，默认启用。
+  - `-c, --color_scheme`：关闭自动检测时需指定的配色方案。
+
+示例：
+
+```shell
+unipie convert page img2hex -p u83.png -g 83 -o u83.hex
 ```
 
 ## 下载
