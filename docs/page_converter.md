@@ -18,7 +18,7 @@ save_page_image(
 ```
 
 - `hex_page_to_image`返回`PIL.Image`对象，适合进一步处理；`save_page_image`直接落盘。
-- 输出格式可通过`img_format`指定；若省略，则由文件扩展名推断（默认PNG）。
+- 输出格式可通过`img_format`指定；若省略，则由文件扩展名推断（默认为PNG）。
 - 配色方案的映射规则见[相关说明](color_scheme.md)。
 
 ## 从分页图片生成`.hex`文件
